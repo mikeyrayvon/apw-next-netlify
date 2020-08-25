@@ -1,12 +1,12 @@
 backend:
-  name: git-gateway
+  name: test-repo
   branch: master
 media_folder: public/img
 public_folder: img
 collections:
   - name: "works"
     label: "Works"
-    folder: "content/works"
+    folder: works
     create: true
     identifier_field: slug
     fields:
