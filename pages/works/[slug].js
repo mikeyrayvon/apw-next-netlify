@@ -4,7 +4,6 @@ import remark from 'remark'
 import html from 'remark-html'
 
 const Work = ({ frontmatter, contentHtml }) => {
-  console.log(frontmatter, contentHtml)
   return (
     <>
       <h1>{frontmatter.title}</h1>
