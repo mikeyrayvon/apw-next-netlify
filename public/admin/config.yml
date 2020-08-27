@@ -1,17 +1,115 @@
 backend:
-  name: git-gateway
+  name: test-repo
   branch: master
 media_folder: public/img
 public_folder: img
 collections:
-  - name: "works"
-    label: "Works"
+  - name: pages
+    label: Pages
+    editor:
+      preview: false
+    files:
+      - file: content/pages/home.md
+        label: Home
+        name: home
+        delete: false
+        fields:
+          - label: Title
+            name: title
+            widget: string
+          - label: 'Content Section'
+            name: 'sections'
+            widget: 'list'
+            types:
+              - label: Text Content
+                name: text
+                widget: object
+                fields:
+                  - label: Text Content
+                    name: content
+                    widget: markdown
+              - label: Image Gallery
+                name: gallery
+                widget: object
+                fields:
+                  - label: Style
+                    name: style
+                    widget: select
+                    options: ["Grid", "Carousel"]
+                    default: "Grid"
+                  - label: Images
+                    name: images
+                    widget: list
+                    fields:
+                    - label: Image
+                      name: image
+                      widget: image
+                    - label: Caption
+                      name: caption
+                      widget: string
+  - name: works
+    label: Works
     folder: content/works
     create: true
-    identifier_field: slug
+    identifier_field: title
+    editor:
+      preview: false
     fields:
-      - { label: "Title", name: "title", widget: "string"}
-      - { label: "Slug", name: "slug", widget: "string"}
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "string"}
-      - { label: "Body", name: "body", widget: "markdown"}
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Description
+        name: description
+        widget: string
+        hint: Used by search engines and social networks
+      - label: Main Image
+        name: main_image
+        widget: image
+        hint: Used by search engines and social networks
+      - label: 'Content Section'
+        name: 'sections'
+        widget: 'list'
+        types:
+          - label: Text Content
+            name: text
+            widget: object
+            fields:
+              - label: Text Content
+                name: content
+                widget: markdown
+          - label: Image Gallery
+            name: gallery
+            widget: object
+            fields:
+              - label: Style
+                name: style
+                widget: select
+                options: ["Grid", "Carousel"]
+                default: "Grid"
+              - label: Images
+                name: images
+                widget: list
+                fields:
+                - label: Image
+                  name: image
+                  widget: image
+                - label: Caption
+                  name: caption
+                  widget: string
+  - name: settings
+    label: Settings
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: content/settings/global.yml
+        label: Global Settings
+        name: global-settings
+        fields:
+          - {label: Site Title, name: siteTitle, widget: string}
+          - {label: Site Url, name: siteUrl, widget: string, required: false}
+          - {label: Site Description, name: siteDescription, widget: text, required: false}
+          - {label: Header Meta / Scripts, name: headerScripts, widget: text, required: false}
